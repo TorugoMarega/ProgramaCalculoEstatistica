@@ -3,6 +3,14 @@
     color: #fff;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+a:visited{
+    text-decoration: none;
+    color: #fff;
+}
+
+a{
+    text-decoration: none;
+}
 
 body{
     background: fixed;
@@ -23,6 +31,7 @@ header{
     width: 50%;
     border: 2px solid rgb(61, 61, 61);
     background-color:  rgba(38, 38, 38, 0.772);
+    transition: all .2s ease-in-out;
 }
 
 #textarea_intervalo{
@@ -44,6 +53,7 @@ header{
 }
 
 .btn{
+    box-shadow: 1px 1px #8a8a8aa9;
     border: 2px solid white;
     border-radius: 8px;
     padding: 8px;
@@ -59,6 +69,7 @@ header{
 #btn_calcular:hover{
     transform: scale(1.1);
     background-color: rgb(33, 154, 37);
+    box-shadow: 3px 3px #8a8a8aa9;
 }
 
 #btn_limpar{
@@ -66,7 +77,8 @@ header{
 }
 
 #btn_limpar:hover{
-    transform: scale(1.1);
+    box-shadow: 3px 3px #8a8a8aa9;
+    transform: scale(1.1) ;
     background-color: rgb(225, 94, 37);
 }
 
@@ -86,9 +98,8 @@ header{
     width: 100%;
     justify-content: center;
     align-content: center;
-    align-items: center;    
+    align-items: center;  
 }
-
 
 .resposta_box{
     margin: 0;
@@ -98,6 +109,15 @@ header{
     line-height: 50px;
     width: 30%;
 }
+@media screen and (max-width: 660px) {
+    #caixa-aux {
+        flex-direction: column;
+        row-gap: 20px;
+    }
+    .resposta_box{
+        width: 80%;
+    }
+  }
 .resposta_box h2{
     color: #000000;
 }

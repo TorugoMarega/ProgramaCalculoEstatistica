@@ -8,10 +8,11 @@
     <title>Calculos de Estatística</title>
     <link rel="shortcut icon" href="img/favicon.png">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script src="js/calcula.js"></script>
 </head>
 
-<body>
+<body id="h1">
     <header>
         <h1>Moda, media mediana</h1>
     </header>
@@ -26,13 +27,16 @@
 
 
             <div id="caixa_externa_btn">
-                <button id="btn_calcular" class="btn" onclick="calcular()">Calcular</button>
-                <button id="btn_limpar" class="btn" onclick="limpar()">Limpar</button>
+                <a  id="btn_calcular" class="btn" href="#caixa_resposta" onclick="calcular()" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-calculator"></i> Calcular</a>
+                <a href="#h1" id="btn_limpar" class="btn" onclick="limpar()" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-trash"></i> Limpar</a>
 
             </div>
         </div>
+        <a href="#caixa_resposta" target="_blank" rel="noopener noreferrer">
+            
+        </a>
         <div id="caixa_resposta" class="caixa_externa">
-            <h1>Resposta</h1>
+            <h1>Resultado</h1>
             <div id="caixa-aux">
                 <div class="resposta_box">
                     <h2>Moda:</h2>
@@ -56,5 +60,31 @@
 
     </footer>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
 
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
 </html>
