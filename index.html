@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculos de Estatística</title>
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/calcula.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Moda, media mediana</h1>
+    </header>
+    <main>
+        <div class="caixa_externa">
+            <h2 id="enunciado">Digite um intervalo de números separados por ponto e vírgula</h2>
+            <h3>Exemplo: 56; 56; 57; 58; 61; 63; 63; 67; 67; 67</h3>
+
+            <textarea wrap="hard" name="entrada_de_dados" id="textarea_intervalo" cols="40" rows="6"
+                placeholder="56; 56; 57; 58; 61; 63; 63; 67; 67; 67..."
+                autocomplete="disabled">56; 56; 57; 58; 61; 63; 63; 67; 67; 67</textarea>
+
+
+            <div id="caixa_externa_btn">
+                <button id="btn_calcular" class="btn" onclick="calcular()">Calcular</button>
+                <button id="btn_limpar" class="btn" onclick="limpar()">Limpar</button>
+
+            </div>
+        </div>
+        <div id="caixa_resposta" class="caixa_externa">
+            <h1>Resposta</h1>
+            <div id="caixa-aux">
+                <div class="resposta_box">
+                    <h2>Moda:</h2>
+                    <h2 id="moda">123</h2>
+                </div>
+                <div class="resposta_box">
+                    <h2>Media</h2>
+                    <h2 id="media">123</h2>
+                </div>
+                <div class="resposta_box">
+                    <h2>Mediana</h2>
+                    <h2 id="mediana">123</h2>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
