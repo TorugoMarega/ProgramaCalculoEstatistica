@@ -11,39 +11,28 @@ function TextAreaToArray() {
 }
 
 function moda() {
-    var arr = TextAreaToArray()
-    var length = arr.length;
-    let maior;
-    let maior_aux;
-    for (var i = 0; i < length; i++) {
-        if (i == 0) {
-            maior = parseFloat(arr[i])
-        }
-        else if (length % 2 == 0) {
-            if (parseFloat(arr[i]) >= maior) {
-                maior = parseFloat(arr[i])
-            }
-        } else if (length % 2 != 0) {
-            if (parseFloat(arr[i]) > maior & maior > maior_aux) {
-                maior_aux = parseFloat(arr[i])
-            } else if (parseFloat(arr[i]) < maior_aux & maior > maior_aux) {
-                maior = parseFloat(arr[i])
-            } 
-        }
+    var array = TextAreaToArray()
+    var frequency = []; // array of frequency.
+    var maxFreq = 0; // holds the max frequency.
+    var modes = [];
+  
+    for (var i in array) {
+      frequency[array[i]] = (frequency[array[i]] || 0) + 1; // increment frequency.
+  
+      if (frequency[array[i]] > maxFreq) { // is this frequency > max so far ?
+        maxFreq = frequency[array[i]]; // update max.
+      }
     }
-    let moda
-    if (maior == undefined) {
-        moda = [maior_aux];
-    } else if (maior_aux == undefined) {
-        moda = [maior];
-    } else if(maior == maior_aux){
-        moda = [maior];
-    }else {
-        moda = [maior, maior_aux];
+  
+    for (var k in frequency) {
+      if (frequency[k] == maxFreq) {
+        modes.push(k);
+      }
     }
-    //console.log(moda)    
-    return moda;
-}
+    return modes;
+  }
+
+
 
 function media() {
     var arr = TextAreaToArray()
@@ -57,14 +46,14 @@ function media() {
 }
 
 function mediana() {
-    var arr = TextAreaToArray()
+/*     var arr = TextAreaToArray()
     var length = arr.length;
     var soma = 0;
     for (var i = 0; i < length; i++) {
         soma += parseInt(arr[i])
     }
-    var media = soma / length;
-    return media.toFixed(2);
+    var media = soma / length; */
+    return undefined;
 }
 
 
@@ -81,16 +70,7 @@ function calcular() {
         mediana_box.innerText = 0
     }
     else {
-        let moda_arr = moda()
-        let moda_string
-        if (moda_arr.length === 1) {
-            moda_string = moda_arr[0]
-        } else if (moda_arr.length === 2) {
-            moda_string = moda_arr[0] + " e " + moda_arr[1]
-        }
-        console.log("MODA: " + moda_string)
-
-        moda_box.innerText = moda_string;
+        moda_box.innerText =  moda().toString().replace(",", " e ");;
         media_box.innerText = media();
         mediana_box.innerText = mediana();
     }
