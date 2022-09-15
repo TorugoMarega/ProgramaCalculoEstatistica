@@ -1,24 +1,12 @@
+/* ----------------------------------------------GERAL-------------------------------------------- */
+
 *{
     padding: 0;
     margin:0 auto;   
     color: #fff;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    box-sizing: border-box;
 }
-
-body {
-    animation: fadeInAnimation ease .5s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-}
-@keyframes fadeInAnimation {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
 
 a:visited{
     text-decoration: none;
@@ -30,24 +18,46 @@ a{
 }
 
 body{
-    background: fixed;
-    background-image: linear-gradient(43deg, #070730 0%, #1b115c 30%, #061650 87%); 
-    height:100vh;
-    display:flex; 
-    flex-direction:column; 
+    animation: fadeInAnimation ease .5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
+
+.background {
+    background-image: url(https://source.unsplash.com/Q7PclNhVRI0);
+    background-image:url('../img/background-blur.png');
+    background-size: contain;
+    background-repeat: repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+} 
+
+/* ---------------------------------- ANIMAÇÃO DE SUAVIZAÇÃO DE CARREGAMENTO ---------------------------------------- */
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* ------------------------------------------------ HEADER ---------------------------------------- */
 
 header{
     margin: 0;
     font-size: 20px;
     text-align: center;
     margin-bottom: 5em;
-    width: 100%;
     background-color: #000000;
     padding: 15px;
     border-bottom: 2px solid #fff;
     display: grid;
+    width: 100%;
 }
+
 #header_aux{
     display: flex;
     align-items: center;
@@ -55,6 +65,7 @@ header{
     vertical-align: middle;
     gap: 10px;
 }
+
 #header_aux h1{
     margin: 0;
     padding: 0;
@@ -64,10 +75,12 @@ header{
 margin: 0;
 }
 
+   
+/* ----------------------------------------------CAIXA ENUNCIADO------------------------------------- */
 .caixa_externa{
     text-align: center;
     padding: 5%;
-    width: 70%;
+    width: 50%;
     border-radius: 10px;
     border: 2px solid rgb(61, 61, 61);
     background-color:  rgba(38, 38, 38, 0.772);
@@ -81,6 +94,7 @@ margin: 0;
     font-size: 25px;
     width: 100%;
     resize: none;
+
 }
 
 #caixa_externa_btn{
@@ -126,30 +140,41 @@ margin: 0;
     margin-bottom: 20px;
 }
 
+/* ----------------------------------------------CAIXA RESPOSTA------------------------------------- */
 #caixa_resposta{
     margin-top: 40px;
+    margin-bottom: 10%;
     visibility: hidden;
 }
 
 #caixa-aux{
+    overflow: hidden;
+    display: flex;
     margin-top: 20px;
-    display: inline-flex;
-    gap: 10%;
+    gap: 8%;
     width: 100%;
     justify-content: center;
     align-content: center;
-    align-items: center;  
+    align-items: stretch;  
+    height: 100%;
+    padding: 0;
 }
 
 .resposta_box{
-    margin: 0;
+    flex: 1;
+    padding: 1em;
     border-radius: 8px;
     border: 2px solid rgb(255, 255, 255);
     background-color:  rgb(255, 255, 255);
     line-height: 50px;
-    padding: 2%;
-    width: 100%;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin: 0 .5em;
+    padding: .5em;
+    min-height: 100%;
 }
+
+/* ----------------------------------------------RESPONSIVIDADE------------------------------------- */
 
 @media screen and (max-width: 660px) {
     body{
@@ -164,25 +189,37 @@ margin: 0;
     #caixa-aux {
         flex-direction: column;
         row-gap: 20px;
+        align-items: center;
     }
 
     .resposta_box{
-        width: 60%;
+        width: 80%;
     }
+
     .caixa_externa{
         margin: 0 auto;
         width: 85%;
     }
   }
+
 .resposta_box h2{
     color: #000000;
 }
+
+
+/* ------------------------------------------- FOOTER--------------------------------------------- */
 
 footer{
     border-top: 2px solid white;
     background-color: #222222;
     margin-top: 10%;
     width: 100%;
+    height: 50px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    position: relative;
 }
 
 #footer-div{
@@ -190,6 +227,7 @@ footer{
     padding: 10px;
     vertical-align: middle;
 }
+
 #footer-div p{
     font-size: 16px;
     height: 100%;

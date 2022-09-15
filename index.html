@@ -9,89 +9,66 @@
     <link rel="shortcut icon" href="img/favicon.png">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <script src="js/calcula.js"></script>
 </head>
 
-<body id="h1">
-    <header>
-        <div id="header_aux">
-            <span>
-                <i id="icon" class="fa-solid fa-chart-pie fa-3x social"></i>
-            </span>
-            <h1>Moda, Media Mediana</h1>
-        </div>
-    </header>
-    <main>
-        <div class="caixa_externa">
-            <h2 id="enunciado">Digite um intervalo de números separados por ponto e vírgula</h2>
-            <h3>Exemplo: 56; 56; 57; 58; 61; 63; 63; 67; 67; 67</h3>
-
-            <textarea wrap="hard" name="entrada_de_dados" id="textarea_intervalo" cols="40" rows="6"
-                placeholder="56; 56; 57; 58; 61; 63; 63; 67; 67; 67..."
-                autocomplete="disabled">56; 56; 57; 58; 61; 63; 63; 67; 67; 67</textarea>
-
-
-            <div id="caixa_externa_btn">
-                <a  id="btn_calcular" class="btn" href="#caixa_resposta" onclick="calcular()" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-calculator"></i> Calcular</a>
-                <a href="#h1" id="btn_limpar" class="btn" onclick="limpar()" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-trash"></i> Limpar</a>
-
+<body id="top" class="background">
+    <div>
+        <header>
+            <div id="header_aux">
+                <span>
+                    <i id="icon" class="fa-solid fa-chart-pie fa-3x social"></i>
+                </span>
+                <h1>Moda, Media Mediana</h1>
             </div>
-        </div>
-        <a href="#caixa_resposta" target="_blank" rel="noopener noreferrer">
-            
-        </a>
-        <div id="caixa_resposta" class="caixa_externa">
-            <h1>Resultado</h1>
-            <div id="caixa-aux">
-                <div class="resposta_box">
-                    <h2>Moda:</h2>
-                    <h2 id="moda">123</h2>
-                </div>
-                <div class="resposta_box">
-                    <h2>Media</h2>
-                    <h2 id="media">123</h2>
-                </div>
-                <div class="resposta_box">
-                    <h2>Mediana</h2>
-                    <h2 id="mediana">123</h2>
+        </header>
+        <main>
+            <div class="caixa_externa">
+                <h2 id="enunciado">Digite um intervalo de números separados por ponto e vírgula</h2>
+                <h3>Exemplo: 56; 56; 57; 58; 61; 63; 63; 67; 67; 67</h3>
+
+                <textarea wrap="hard" name="entrada_de_dados" id="textarea_intervalo" cols="40" rows="6"
+                    placeholder="56; 56; 57; 58; 61; 63; 63; 67; 67; 67..."
+                    autocomplete="disabled">56; 56; 57; 58; 61; 63; 63; 67; 67; 67;</textarea>
+
+
+                <div id="caixa_externa_btn">
+                    <a id="btn_calcular" class="btn" href="#caixa_resposta" onclick="calcular()" target="_blank"
+                        rel="noopener noreferrer"><i class="fa-solid fa-calculator"></i> Calcular</a>
+                    <a href="#top" id="btn_limpar" class="btn" onclick="limpar()" target="_blank"
+                        rel="noopener noreferrer"><i class="fa-solid fa-trash"></i> Limpar</a>
+
                 </div>
             </div>
-        </div>
-    </main>
+
+            <div id="caixa_resposta" class="caixa_externa">
+                <h1>Resultado</h1>
+                <div id="caixa-aux">
+                    <div class="resposta_box">
+                        <h2>Moda:</h2>
+                        <h2 id="moda">0</h2>
+                    </div>
+                    <div class="resposta_box">
+                        <h2>Media</h2>
+                        <h2 id="media">0</h2>
+                    </div>
+                    <div class="resposta_box">
+                        <h2>Mediana</h2>
+                        <h2 id="mediana">0</h2>
+                    </div>
+                </div>
+            </div>
+        </main>
 
 
 
-    <footer>
-        <div id="footer-div">
-            <p>2022 &copy Victor Hugo Marega</p>
-        </div>
-    </footer>
+        <footer>
+            <div id="footer-div">
+                <p>2022 &copy Victor Hugo Marega</p>
+            </div>
+        </footer>
+    </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links
-  $("a").on('click', function(event) {
+<script src="js/calcula.js"></script>
 
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    } // End if
-  });
-});
-</script>
 </html>

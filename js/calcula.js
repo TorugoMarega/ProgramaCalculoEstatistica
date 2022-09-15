@@ -1,90 +1,147 @@
-
-
-function TextAreaToArray() {
-    var textarea = document.getElementById("textarea_intervalo").value;
-    var textarea_replaced = textarea.replace(",", ".").replace(/\s/g, '');
-
-    //console.log();
-    var arr = textarea_replaced.split(';').map(element => element.trim());
-    //console.log(arr)
-    return arr;
+function set_initial_style(textarea){
+  var caixa_resposta = document.getElementById("caixa_resposta")
+  textarea.style.borderColor="rgb(61, 61, 61)";
+  caixa_resposta.style.visibility="visible";
+  caixa_resposta.children[1].style.display ="flex";
+  caixa_resposta.style.background="rgba(38, 38, 38, 0.772)";
+  caixa_resposta.children[0].textContent="Resultado"
 }
 
-function moda() {
-    var array = TextAreaToArray()
-    var frequency = []; // array of frequency.
-    var maxFreq = 0; // holds the max frequency.
-    var modes = [];
-  
-    for (var i in array) {
-      frequency[array[i]] = (frequency[array[i]] || 0) + 1; // increment frequency.
-  
-      if (frequency[array[i]] > maxFreq) { // is this frequency > max so far ?
-        maxFreq = frequency[array[i]]; // update max.
-      }
-    }
-  
-    for (var k in frequency) {
-      if (frequency[k] == maxFreq) {
-        modes.push(k);
-      }
-    }
-    return modes;
+function error(textarea){
+  var caixa_resposta = document.getElementById("caixa_resposta")
+  textarea.style.borderColor="#8b0f0f8b";
+  caixa_resposta.style.background="rgba(47, 1, 1, 0.856)";
+  caixa_resposta.style.visibility="visible";
+  caixa_resposta.children[0].textContent="DIGITE UMA SEQUÊNCIA VÁLIDA!"
+  caixa_resposta.children[1].style.visibility ="hidden";
+  caixa_resposta.children[1].style.display ="none";
+}
+
+
+
+function TextAreaToArray(textarea) {
+  var textarea_replaced = textarea.value.replace(",", ".").replace(/\s/g, '');
+  var lenght = textarea_replaced.length;
+
+  if(textarea_replaced[lenght-1] === ';'){
+    textarea_replaced = textarea.value.replace(",", ".").replace(/\s/g, '').replace(/.$/,".");
   }
 
+  var arr = textarea_replaced.split(';')
 
-
-function media() {
-    var arr = TextAreaToArray()
-    var length = arr.length;
-    var soma = 0;
-    for (var i = 0; i < length; i++) {
-        soma += parseInt(arr[i])
+  for(let i = 0; i<arr.length; i++){
+    arr[i]=parseFloat(arr[i])
+    if(isNaN(arr[i])){
+      arr= undefined
+      break;
     }
-    var media = soma / length;
-    return media.toFixed(2);
+  }
+  return arr;
 }
 
-function mediana() {
-/*     var arr = TextAreaToArray()
-    var length = arr.length;
-    var soma = 0;
-    for (var i = 0; i < length; i++) {
-        soma += parseInt(arr[i])
+
+
+function moda(array) {
+
+  var frequency = [];
+  var maxFreq = 0;
+  var modes = [];
+
+  for (var i in array) {
+    frequency[array[i]] = (frequency[array[i]] || 0) + 1;
+
+    if (frequency[array[i]] > maxFreq) {
+      maxFreq = frequency[array[i]];
     }
-    var media = soma / length; */
-    return undefined;
+  }
+
+  for (var k in frequency) {
+    if (frequency[k] == maxFreq) {
+      modes.push(k);
+    }
+  }
+  return modes;
 }
 
+function media(array) {
+  var length = array.length;
+  var soma = 0;
+  for (var i = 0; i < length; i++) {
+    soma += parseInt(array[i])
+  }
+  var media = soma / length;
+  return media.toFixed(2);
+}
+
+
+const mediana = arr => {
+  const mid = Math.floor(arr.length / 2),
+    nums = [...arr].sort((a, b) => a - b);
+  return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+};
+
+/* ------------------------------------- FUNÇAO QUE REALIZA TODOS OS CÁLCULOS----------------------------- */
 
 function calcular() {
-    var textarea = document.getElementById("textarea_intervalo").value;
-    var caixa_resposta = document.getElementById("caixa_resposta")
-    var moda_box = document.getElementById("moda")
-    var media_box = document.getElementById("media")
-    var mediana_box = document.getElementById("mediana")
+  var caixa_resposta = document.getElementById("caixa_resposta")
+  let textarea = document.getElementById("textarea_intervalo");
+  var textarea_value = textarea.value;
+  let array = TextAreaToArray(textarea)
+  
+  if (textarea_value === undefined || textarea_value === "" || array == undefined) {
+    error(textarea)
+  }
+  else {
+    var moda_box = document.getElementById("moda");
+    var media_box = document.getElementById("media");
+    var mediana_box = document.getElementById("mediana");
 
-    if (textarea === undefined || textarea === "") {
-        moda_box.innerText = 0
-        media_box.innerText = 0
-        mediana_box.innerText = 0
-    }
-    else {
-        moda_box.innerText =  moda().toString().replace(",", " e ");;
-        media_box.innerText = media();
-        mediana_box.innerText = mediana();
-    }
+    set_initial_style(textarea)
 
-    caixa_resposta.style.visibility = "visible";
+    moda_box.innerText = moda(array).toString().replace(",", " e ");
+    media_box.innerText = media(array);
+    mediana_box.innerText = mediana(array);
+
+    //console.log("MODA: " + moda(array).toString().replace(",", " e "))
+    //console.log("MEDIA: " + media(array))
+    //console.log("MEDIANA: " + mediana(array))
+  }
+  caixa_resposta.style.display = "block";
 
 }
+/* -------------------------------------------- BOTÃO DE LIMPAR TELA --------------------------------- */
 
 function limpar() {
-    var textarea = document.getElementById("textarea_intervalo");
-    textarea.textContent = "";
-    textarea.value = ""
-
-    var caixa_resposta = document.getElementById("caixa_resposta")
-    caixa_resposta.style.visibility = "hidden";
-
+  let textarea = document.getElementById("textarea_intervalo");
+  let caixa_resposta = document.getElementById("caixa_resposta")
+  caixa_resposta.style.visibility="hidden";
+  textarea.style.borderColor = "rgb(61, 61, 61)";
+  textarea.textContent = "";
+  textarea.value = "";
 }
+
+/* ------------------------------------ ANIMAÇÃO SUAVIZAÇÃO DE SCROLL ------------------------------------- */
+  $(document).ready(function () {
+    // Add smooth scrolling to all links
+    $("a").on('click', function (event) {
+
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+
+        // Store hash
+        var hash = this.hash;
+
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function () {
+
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+        });
+      } // End if
+    });
+  });
