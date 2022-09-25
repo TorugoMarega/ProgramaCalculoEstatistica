@@ -24,7 +24,6 @@ body {
 }
 
 .background {
-    background-image: url(https://source.unsplash.com/Q7PclNhVRI0);
     background-image: url("../img/background-blur.png");
     background-size: contain;
     background-repeat: repeat;

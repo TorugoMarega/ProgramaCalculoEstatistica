@@ -64,6 +64,10 @@ function moda(array) {
       modes.push(k);
     }
   }
+  if(array.length == modes.length){
+    modes = "Amodal"
+  }
+  
   return modes;
 }
 
@@ -76,7 +80,7 @@ function media(array) {
   }
   var media = soma / length;
   return media.toFixed(2);
-  
+
 }
 
 
