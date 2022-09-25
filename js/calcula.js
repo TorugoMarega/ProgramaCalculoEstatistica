@@ -1,4 +1,30 @@
+/* ------------------------------------ APARECER O BOTÃO PARA O TOPO ------------------------------------- */
+let arrowButton = document.getElementById("arrow");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    arrowButton.style.display = "block";
+  } else {
+    arrowButton.style.display = "none";
+  }
+
+}
+/* ------------------------------------ FUNÇÃO DE IR PARA O TOPO ------------------------------------- */
+function topFunction() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+/* ------------------------------------ FUNÇÃO DE IR PARA O FINAL ------------------------------------- */
+function bottomFunction() {
+  window.scrollTo({top: 500, behavior: 'smooth'});
+}
+
+
+/* ------------------------------------ FUNÇÃO PARA DEFINIR O ESTADO DO STYLE INICIAL ------------------------------------- */
 function set_initial_style(textarea){
+
   var caixa_resposta = document.getElementById("caixa_resposta")
   textarea.style.borderColor="rgb(61, 61, 61)";
   caixa_resposta.style.visibility="visible";
@@ -7,6 +33,7 @@ function set_initial_style(textarea){
   caixa_resposta.children[0].textContent="Resultado"
 }
 
+/* ------------------------------------ FUNÇÃO PARA MONTAR A CAIDA DE ERRO ------------------------------------- */
 function error(textarea){
   var caixa_resposta = document.getElementById("caixa_resposta")
   textarea.style.borderColor="#8b0f0f8b";
@@ -22,6 +49,7 @@ function error(textarea){
 }
 
 
+/* -------------------- FUNÇÃO PARA CAPTURAR OS NUMEROS DIGITADOS E TRANSFORMAR EM ARRAY ------------------------------------- */
 
 function TextAreaToArray(textarea) {
   var textarea_replaced = textarea.value.replace(",", ".").replace(/\s/g, '');
@@ -43,7 +71,7 @@ function TextAreaToArray(textarea) {
   return arr;
 }
 
-
+/* ------------------------------------- CALCULO MODA ------------------------------------- */
 
 function moda(array) {
 
@@ -67,9 +95,11 @@ function moda(array) {
   if(array.length == modes.length){
     modes = "Amodal"
   }
-  
+
   return modes;
 }
+
+/* ------------------------------------- CALCULO MEDIA ------------------------------------- */
 
 function media(array) {
 
@@ -83,12 +113,15 @@ function media(array) {
 
 }
 
+/* ------------------------------------- CALCULO MEDIANA ------------------------------------- */
 
 const mediana = arr => {
   const mid = Math.floor(arr.length / 2),
     nums = [...arr].sort((a, b) => a - b);
   return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
 }
+
+/* ------------------------------------- CALCULO VARIANCIA ------------------------------------- */
 
 function variancia(array){
 
@@ -98,15 +131,58 @@ function variancia(array){
   for(let i=0; i <array.length; i++){
     somatorio += (Math.pow((array[i]-mediaVar), 2))
   }
-  let length = array.length-1;
-  let variancia = somatorio/length;
+  let length = array.length;
+
+  let variancia = somatorio/length-1;
   return variancia.toFixed(2);
 
 }
 
+/* ------------------------------------- CALCULO DESVIO PADRAO AMOSTRAL------------------------------------- */
 
-function desvpadrao(){
+function desvPadrao(array){
+  let mediaVar = media(array);
+  let somatorio = 0;
 
+  for(let i=0; i <array.length; i++){
+    somatorio += (Math.pow((array[i]-mediaVar), 2))
+  }
+  let length = array.length;
+  let desvPadrao = Math.sqrt(somatorio/length);
+
+  return desvPadrao.toFixed(2);
+ // return 0;
+}
+/* ------------------------------------- CALCULO DESVIO PADRAO DA POPULAÇÃO------------------------------------- */
+
+function desvPadraoPop(array){
+  let mediaVar = media(array);
+  let somatorio = 0;
+
+  for(let i=0; i <array.length; i++){
+    somatorio += (Math.pow((array[i]-mediaVar), 2))
+  }
+  let length = array.length-1;
+  let desvPadraoPop = Math.sqrt(somatorio/length);
+
+  return desvPadraoPop.toFixed(2);
+}
+
+/* ------------------------------------- CALCULO COEFICIENTE DE VARIAÇÃO ------------------------------------- */
+
+function coefVariacao(array){
+  let mediaVar = media(array);
+  let desvPadraoVar = desvPadrao(array);
+  let coefVariacao = desvPadraoVar/mediaVar*100
+  return coefVariacao.toFixed(2);
+}
+
+/* ------------------------------------- CALCULO ERRO PADRAO ------------------------------------- */
+
+function errPadrao(array){
+  let desvPadraoVar = desvPadrao(array);
+  let errPadrao = desvPadraoVar/Math.sqrt(array.length)
+  return errPadrao.toFixed(2);
 }
 
 /* ------------------------------------- FUNÇAO QUE REALIZA TODOS OS CÁLCULOS----------------------------- */
@@ -125,6 +201,11 @@ function calcular() {
     var media_box = document.getElementById("media");
     var mediana_box = document.getElementById("mediana");
     var variancia_box = document.getElementById("variancia");
+    var desvpadrao_box = document.getElementById("desvpadrao");
+    var desvpadraopop_box = document.getElementById("desvpadraopop");
+    var cvariacao_box = document.getElementById("cvariacao");
+    var errpadrao_box = document.getElementById("errpadrao");
+    var qtdeElementos_box = document.getElementById("qtdeElementos");
 
     set_initial_style(textarea)
 
@@ -132,10 +213,12 @@ function calcular() {
     media_box.innerText = media(array);
     mediana_box.innerText = mediana(array);
     variancia_box.innerText = variancia(array);
+    desvpadrao_box.innerText = desvPadrao(array);
+    desvpadraopop_box.innerText = desvPadraoPop(array);
+    cvariacao_box.innerText = coefVariacao(array)+"%";
+    errpadrao_box.innerText = errPadrao(array);
+    qtdeElementos_box.innerText = array.length
 
-    //console.log("MODA: " + moda(array).toString().replace(",", " e "))
-    //console.log("MEDIA: " + media(array))
-    //console.log("MEDIANA: " + mediana(array))
   }
   caixa_resposta.style.display = "block";
 
@@ -151,17 +234,3 @@ function limpar() {
   textarea.value = "";
 }
 
-/* ------------------------------------ ANIMAÇÃO SUAVIZAÇÃO DE SCROLL ------------------------------------- */
-  $(document).ready(function () {
-    $("a").on('click', function (event) {
-      if (this.hash !== "") {
-        event.preventDefault();
-        var hash = this.hash;
-        $('html, body').animate({
-          scrollTop: $(hash).offset().top
-        }, 800, function () {
-          window.location.hash = hash;
-        });
-      }
-    });
-  });
