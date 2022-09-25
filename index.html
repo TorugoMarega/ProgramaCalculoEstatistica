@@ -28,21 +28,21 @@
 
                 <textarea wrap="hard" name="entrada_de_dados" id="textarea_intervalo" cols="40" rows="6"
                     placeholder="56; 56; 57; 58; 61; 63; 63; 67; 67; 67..."
-                    autocomplete="disabled">56; 56; 57; 58; 61; 63; 63; 67; 67; 67;</textarea>
+                    autocomplete="disabled">10; 4; 5; 15; 1</textarea>
 
 
                 <div id="caixa_externa_btn">
-                    <a id="btn_calcular" class="btn" href="#caixa_resposta" onclick="calcular()" target="_blank"
+                    <a id="btn_calcular" class="btn" href="#caixa_resposta" onclick="calcular()"
                         rel="noopener noreferrer"><i class="fa-solid fa-calculator"></i> Calcular</a>
-                    <a href="#top" id="btn_limpar" class="btn" onclick="limpar()" target="_blank"
+                    <a href="#top" id="btn_limpar" class="btn" onclick="limpar()" 
                         rel="noopener noreferrer"><i class="fa-solid fa-trash"></i> Limpar</a>
 
                 </div>
             </div>
 
             <div id="caixa_resposta" class="caixa_externa">
-                <h1>Resultado</h1>
-                <div id="caixa-aux">
+                    <h1>Resultado</h1>
+                <div class="caixa-aux">
                     <div class="resposta_box">
                         <h2>Moda:</h2>
                         <h2 id="moda">0</h2>
@@ -56,6 +56,31 @@
                         <h2 id="mediana">0</h2>
                     </div>
                 </div>
+
+                <div class="caixa-aux" >
+                    <div class="resposta_box">
+                        <h2>Variância:</h2>
+                        <h2 id="variancia">0</h2>
+                    </div>
+                    <div class="resposta_box">
+                        <h2>Desvio Padrão</h2>
+                        <h2 id="desvpadrao">0</h2>
+                    </div>
+                    <div class="resposta_box">
+                        <h2>Coeficiente de variação</h2>
+                        <h2 id="cvariacao">0</h2>
+                    </div>
+
+                </div>
+
+                
+                <div class="caixa-aux" >
+                    <div class="resposta_box">
+                        <h2>Erro Padrão da Média:</h2>
+                        <h2 id="errpadrao">0</h2>
+                    </div>
+                </div>
+
             </div>
         </main>
 

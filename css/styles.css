@@ -1,52 +1,52 @@
 /* ----------------------------------------------GERAL-------------------------------------------- */
 
-*{
+* {
     padding: 0;
-    margin:0 auto;   
+    margin: 0 auto;
     color: #fff;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
     box-sizing: border-box;
 }
 
-a:visited{
+a:visited {
     text-decoration: none;
     color: #fff;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-body{
-    animation: fadeInAnimation ease .5s;
+body {
+    animation: fadeInAnimation ease 0.5s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 
 .background {
     background-image: url(https://source.unsplash.com/Q7PclNhVRI0);
-    background-image:url('../img/background-blur.png');
+    background-image: url("../img/background-blur.png");
     background-size: contain;
     background-repeat: repeat;
     background-position: center;
     width: 100%;
     height: 100%;
-} 
+}
 
 /* ---------------------------------- ANIMAÇÃO DE SUAVIZAÇÃO DE CARREGAMENTO ---------------------------------------- */
 
-@keyframes fadeInAnimation {
+/* @keyframes fadeInAnimation {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
     }
-}
+} */
 
 /* ------------------------------------------------ HEADER ---------------------------------------- */
 
-header{
+header {
     margin: 0;
     font-size: 20px;
     text-align: center;
@@ -58,7 +58,7 @@ header{
     width: 100%;
 }
 
-#header_aux{
+#header_aux {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,38 +66,36 @@ header{
     gap: 10px;
 }
 
-#header_aux h1{
+#header_aux h1 {
     margin: 0;
     padding: 0;
 }
 
-#icon{
-margin: 0;
+#icon {
+    margin: 0;
 }
 
-   
 /* ----------------------------------------------CAIXA ENUNCIADO------------------------------------- */
-.caixa_externa{
+.caixa_externa {
     text-align: center;
     padding: 5%;
     width: 50%;
     border-radius: 10px;
     border: 2px solid rgb(61, 61, 61);
-    background-color:  rgba(38, 38, 38, 0.772);
-    transition: all .2s ease-in-out;
+    background-color: rgba(38, 38, 38, 0.772);
+    transition: all 0.2s ease-in-out;
 }
 
-#textarea_intervalo{
+#textarea_intervalo {
     margin-top: 10%;
     border-radius: 8px;
     background-color: #8080809f;
     font-size: 25px;
     width: 100%;
     resize: none;
-
 }
 
-#caixa_externa_btn{
+#caixa_externa_btn {
     margin-top: 20px;
     display: flex;
     vertical-align: middle;
@@ -106,110 +104,135 @@ margin: 0;
     gap: 30px;
 }
 
-.btn{
+.btn {
     box-shadow: 1px 1px #8a8a8aa9;
     border: 2px solid white;
     border-radius: 8px;
     padding: 8px;
     font-size: large;
     margin: 0;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
-#btn_calcular{
+#btn_calcular {
     background-color: rgb(15, 75, 17);
 }
 
-#btn_calcular:hover{
+#btn_calcular:hover {
     transform: scale(1.1);
     background-color: rgb(33, 154, 37);
     box-shadow: 3px 3px #8a8a8aa9;
 }
 
-#btn_limpar{
+#btn_limpar {
     background-color: rgb(173, 53, 1);
 }
 
-#btn_limpar:hover{
+#btn_limpar:hover {
     box-shadow: 3px 3px #8a8a8aa9;
-    transform: scale(1.1) ;
+    transform: scale(1.1);
     background-color: rgb(225, 94, 37);
 }
 
-#enunciado{
+#enunciado {
     margin-bottom: 20px;
 }
 
 /* ----------------------------------------------CAIXA RESPOSTA------------------------------------- */
-#caixa_resposta{
+#caixa_resposta {
     margin-top: 40px;
     margin-bottom: 10%;
     visibility: hidden;
 }
 
-#caixa-aux{
+.caixa-aux {
     overflow: hidden;
     display: flex;
-    margin-top: 20px;
     gap: 8%;
     width: 100%;
     justify-content: center;
     align-content: center;
-    align-items: stretch;  
+    align-items: stretch;
     height: 100%;
     padding: 0;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-.resposta_box{
+.resposta_box {
     flex: 1;
     padding: 1em;
     border-radius: 8px;
     border: 2px solid rgb(255, 255, 255);
-    background-color:  rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     line-height: 50px;
     word-wrap: break-word;
-    word-break: break-all;
-    margin: 0 .5em;
-    padding: .5em;
+    margin: 0 0.5em;
+    padding: 0.5em;
     min-height: 100%;
+}
+
+.resposta_box h2{
+    line-height: 35px;
 }
 
 /* ----------------------------------------------RESPONSIVIDADE------------------------------------- */
 
 @media screen and (max-width: 660px) {
-    body{
+    body {
         width: 100%;
     }
 
-    #header_aux{
+    #header_aux {
         width: 100%;
         display: block;
     }
 
-    #caixa-aux {
+    .caixa-aux {
         flex-direction: column;
         row-gap: 20px;
         align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 10px;
     }
 
-    .resposta_box{
+    .resposta_box {
         width: 80%;
     }
 
-    .caixa_externa{
+    .caixa_externa {
         margin: 0 auto;
         width: 85%;
     }
-  }
+}
 
-.resposta_box h2{
+.resposta_box h2 {
     color: #000000;
 }
 
+@media screen and (max-width: 1200px) {
+    #caixa-externa-resultado-aux h1 {
+        margin-bottom: 20px;
+    }
+
+    .caixa-aux {
+        flex-direction: column;
+        row-gap: 20px;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 10px;
+    }
+
+    .resposta_box {
+        width: 80%;
+    }
+}
 
 /* ------------------------------------------- FOOTER--------------------------------------------- */
 
-footer{
+footer {
     border-top: 2px solid white;
     background-color: #222222;
     margin-top: 10%;
@@ -222,13 +245,13 @@ footer{
     position: relative;
 }
 
-#footer-div{
+#footer-div {
     display: flex;
     padding: 10px;
     vertical-align: middle;
 }
 
-#footer-div p{
+#footer-div p {
     font-size: 16px;
     height: 100%;
     text-align: center;

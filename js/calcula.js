@@ -15,6 +15,10 @@ function error(textarea){
   caixa_resposta.children[0].textContent="DIGITE UMA SEQUÊNCIA VÁLIDA!"
   caixa_resposta.children[1].style.visibility ="hidden";
   caixa_resposta.children[1].style.display ="none";
+  caixa_resposta.children[2].style.visibility ="hidden";
+  caixa_resposta.children[2].style.display ="none";
+  caixa_resposta.children[3].style.visibility ="hidden";
+  caixa_resposta.children[3].style.display ="none";
 }
 
 
@@ -64,6 +68,7 @@ function moda(array) {
 }
 
 function media(array) {
+
   var length = array.length;
   var soma = 0;
   for (var i = 0; i < length; i++) {
@@ -71,6 +76,7 @@ function media(array) {
   }
   var media = soma / length;
   return media.toFixed(2);
+  
 }
 
 
@@ -78,7 +84,26 @@ const mediana = arr => {
   const mid = Math.floor(arr.length / 2),
     nums = [...arr].sort((a, b) => a - b);
   return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
-};
+}
+
+function variancia(array){
+
+  let mediaVar = media(array);
+  let somatorio = 0;
+
+  for(let i=0; i <array.length; i++){
+    somatorio += (Math.pow((array[i]-mediaVar), 2))
+  }
+  let length = array.length-1;
+  let variancia = somatorio/length;
+  return variancia.toFixed(2);
+
+}
+
+
+function desvpadrao(){
+
+}
 
 /* ------------------------------------- FUNÇAO QUE REALIZA TODOS OS CÁLCULOS----------------------------- */
 
@@ -95,12 +120,14 @@ function calcular() {
     var moda_box = document.getElementById("moda");
     var media_box = document.getElementById("media");
     var mediana_box = document.getElementById("mediana");
+    var variancia_box = document.getElementById("variancia");
 
     set_initial_style(textarea)
 
     moda_box.innerText = moda(array).toString().replace(",", " e ");
     media_box.innerText = media(array);
     mediana_box.innerText = mediana(array);
+    variancia_box.innerText = variancia(array);
 
     //console.log("MODA: " + moda(array).toString().replace(",", " e "))
     //console.log("MEDIA: " + media(array))
@@ -122,26 +149,15 @@ function limpar() {
 
 /* ------------------------------------ ANIMAÇÃO SUAVIZAÇÃO DE SCROLL ------------------------------------- */
   $(document).ready(function () {
-    // Add smooth scrolling to all links
     $("a").on('click', function (event) {
-
-      // Make sure this.hash has a value before overriding default behavior
       if (this.hash !== "") {
-        // Prevent default anchor click behavior
         event.preventDefault();
-
-        // Store hash
         var hash = this.hash;
-
-        // Using jQuery's animate() method to add smooth page scroll
-        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
         $('html, body').animate({
           scrollTop: $(hash).offset().top
         }, 800, function () {
-
-          // Add hash (#) to URL when done scrolling (default click behavior)
           window.location.hash = hash;
         });
-      } // End if
+      }
     });
   });
