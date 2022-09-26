@@ -39,7 +39,7 @@ function error(textarea){
   textarea.style.borderColor="#8b0f0f8b";
   caixa_resposta.style.background="rgba(47, 1, 1, 0.856)";
   caixa_resposta.style.visibility="visible";
-  caixa_resposta.children[0].textContent="DIGITE UMA SEQUÊNCIA VÁLIDA!"
+  caixa_resposta.children[0].textContent="DIGITE UMA SEQUÊNCIA VÁLIDA! OS NÚMEROS DEVEM ESTAR SEPARADOS POR ' ; ' E NA MESMA LINHA"
   caixa_resposta.children[1].style.visibility ="hidden";
   caixa_resposta.children[1].style.display ="none";
   caixa_resposta.children[2].style.visibility ="hidden";
